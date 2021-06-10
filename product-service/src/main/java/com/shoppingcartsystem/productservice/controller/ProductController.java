@@ -35,16 +35,16 @@ public class ProductController{
 		return productRepository.findByProductName(productName);
 	}
 
-	/*
-	 * @GetMapping("/{category}") public List<Product>
-	 * getProductByCategory(@PathVariable String category){
-	 * 
-	 * return productRepository.findByCategory(category); }
-	 * 
-	 * @GetMapping public List<Product> getProductByType(String productType){
-	 * 
-	 * return productRepository.findByProductType(productType); }
-	 */
+	
+	  @GetMapping("/{category}") public List<Product>
+	  getProductByCategory(@PathVariable String category){
+	  
+	  return productRepository.findByCategory(category); }
+	  
+	  @GetMapping public List<Product> getProductByType(String productType){
+	  
+	  return productRepository.findByProductType(productType); }
+	 
 	@PostMapping("/addProduct")
 	public String addProduct(@RequestBody Product product) {
 		
