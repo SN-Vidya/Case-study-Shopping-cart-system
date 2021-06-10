@@ -15,7 +15,7 @@ public interface UserService {
 	
 	User addAdminProfile(User user);
 
-	//User getByFullName(String fullName);
+	User getByFullName(String fullName);
 
 	User updateProfile(User user);
 

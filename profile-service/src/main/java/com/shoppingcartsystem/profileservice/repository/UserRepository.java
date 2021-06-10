@@ -12,7 +12,7 @@ public interface UserRepository extends MongoRepository<User,String> {
 
 	//User findByMobile_no(Double mobile_no);
 
-	//User findByFullName(String fullName);
+	User findByFullName(String fullName);
 
 	User deleteByFullName(String fullName);
 	

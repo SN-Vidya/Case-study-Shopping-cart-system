@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,14 +44,14 @@ public class UserController {
 		return userRepository.findById(_id);
 	}
 
-	/*
-	 * @GetMapping("/allusers/{fullName}")
-	 * 
-	 * @ResponseStatus(HttpStatus.FOUND) public User
-	 * getByFullName(@RequestParam(value="fullName") String fullName) {
-	 * 
-	 * return userRepository.findByFullName(fullName); }
-	 */
+	
+	  @GetMapping("/allusers/{fullName}")
+	  
+	  @ResponseStatus(HttpStatus.FOUND) public User
+	  getByFullName(@RequestParam(value="fullName") String fullName) {
+	  
+	  return userRepository.findByFullName(fullName); }
+	 
 	@PutMapping("/update/{_id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public User updateProfile(@RequestBody User user, @PathVariable String _id) {

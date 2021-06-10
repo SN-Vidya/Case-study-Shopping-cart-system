@@ -25,11 +25,11 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findById(_id);
 	}
 
-	/*
-	 * @Override public User getByFullName(String fullName) {
-	 * 
-	 * return userRepository.findByFullName(fullName); }
-	 */
+	
+	  @Override public User getByFullName(String fullName) {
+	  
+	  return userRepository.findByFullName(fullName); }
+	 
 	@Override
 	public User updateProfile(User user) {
 		
