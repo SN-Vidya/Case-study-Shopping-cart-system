@@ -1,6 +1,7 @@
 package com.shoppingcartsystem.profileservice.service;
 import java.util.List;
-import java.util.Optional;
+
+//import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,14 +19,17 @@ public class UserServiceImpl implements UserService{
 		
 		return userRepository.findAll();
 	}
-
 	@Override
-	public Optional<User> getById(String _id) {
-		
-		return userRepository.findById(_id);
-	}
+    public User getUserById(String _id ) {
+        return userRepository.getOne(_id);
+    }
 
-	
+	/*
+	 * @Override public Optional<User> getById(String _id) {
+	 * 
+	 * return userRepository.findById(_id); }
+	 * 
+	 */
 	  @Override public User getByFullName(String fullName) {
 	  
 	  return userRepository.findByFullName(fullName); }

@@ -1,15 +1,17 @@
 package com.shoppingcartsystem.profileservice.service;
 
 import java.util.List;
-import java.util.Optional;
+
+//import java.util.Optional;
 
 import com.shoppingcartsystem.profileservice.model.User;
 
 public interface UserService {
 	
-	Optional<User> getById(String _id );
 
 	List<User> getAllUser();
+	
+	User getUserById(String _id );
 	
 	User addNewCustomerProfile(User user);
 	
