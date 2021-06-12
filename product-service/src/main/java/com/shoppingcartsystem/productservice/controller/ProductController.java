@@ -29,19 +29,20 @@ public class ProductController{
 		
 		return productRepository.findAll();
 	}
-	@GetMapping("/{productName}")
+	@GetMapping("ProductName/{productName}")
 	public List<Product> getProductByName(@PathVariable String productName) {
 		
 		return productRepository.findByProductName(productName);
 	}
 
 	
-	  @GetMapping("/{category}") public List<Product>
+	  @GetMapping("Category/{category}") public List<Product>
 	  getProductByCategory(@PathVariable String category){
 	  
 	  return productRepository.findByCategory(category); }
 	  
-	  @GetMapping public List<Product> getProductByType(String productType){
+	  @GetMapping("Type/{productType}")
+	  public List<Product> getProductByType(String productType){
 	  
 	  return productRepository.findByProductType(productType); }
 	 
