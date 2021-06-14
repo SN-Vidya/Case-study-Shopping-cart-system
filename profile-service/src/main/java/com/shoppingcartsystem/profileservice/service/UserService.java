@@ -1,6 +1,7 @@
 package com.shoppingcartsystem.profileservice.service;
 
 import java.util.List;
+import java.util.Optional;
 
 //import java.util.Optional;
 
@@ -11,7 +12,7 @@ public interface UserService {
 
 	List<User> getAllUser();
 	
-	User getUserById(String _id );
+	//User getUserById(String _id );
 	
 	User addNewCustomerProfile(User user);
 	
@@ -22,6 +23,8 @@ public interface UserService {
 	User updateProfile(User user);
 
 	User deleteByFullName(String fullName);
+
+	Optional<User> getById(String _id);
 
 	
 	

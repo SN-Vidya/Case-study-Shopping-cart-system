@@ -1,5 +1,6 @@
 package com.shoppingcartsystem.profileservice.service;
 import java.util.List;
+import java.util.Optional;
 
 //import java.util.Optional;
 
@@ -19,17 +20,15 @@ public class UserServiceImpl implements UserService{
 		
 		return userRepository.findAll();
 	}
-	@Override
-    public User getUserById(String _id ) {
-        return userRepository.getOne(_id);
-    }
+	
 
-	/*
-	 * @Override public Optional<User> getById(String _id) {
-	 * 
-	 * return userRepository.findById(_id); }
-	 * 
-	 */
+	
+	  @Override
+	 public Optional<User> getById(String _id) {
+	  
+	  return userRepository.findById(_id); }
+	  
+	 
 	  @Override public User getByFullName(String fullName) {
 	  
 	  return userRepository.findByFullName(fullName); }

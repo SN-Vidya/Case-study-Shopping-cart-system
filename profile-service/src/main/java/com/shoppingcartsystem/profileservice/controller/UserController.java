@@ -37,7 +37,7 @@ public class UserController {
 		
 		return userRepository.findAll();
 	}
-	@GetMapping("/allusers/{_id}")
+	@GetMapping("/users/{_id}")
 	@ResponseStatus(HttpStatus.FOUND)
 	public Optional<User> getById( @PathVariable String _id) {
 		
@@ -45,18 +45,18 @@ public class UserController {
 	}
 
 	
-	  @GetMapping("/allusers/{fullName}")
+	  @GetMapping("userName/{fullName}")
 	  
 	  @ResponseStatus(HttpStatus.FOUND) public User
-	  getByFullName(@RequestParam(value="fullName") String fullName) {
+	  getByFullName(@RequestParam(value="fullName", required = false) String fullName) {
 	  
 	  return userRepository.findByFullName(fullName); }
 	 
-	@PutMapping("/update/{_id}")
+	@PutMapping("/update/{email_id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public User updateProfile(@RequestBody User user, @PathVariable String _id) {
+	public User updateProfile(@RequestBody User user, @PathVariable String email_id) {
 		
-		user.set_id(_id);
+		user.setEmail_id(email_id);
 		userRepository.save(user);
 		return user;
 	}
