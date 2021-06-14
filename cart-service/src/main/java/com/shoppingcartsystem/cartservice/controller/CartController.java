@@ -4,6 +4,7 @@ package com.shoppingcartsystem.cartservice.controller;
   import java.util.List; 
   
   import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 //import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping; 
   import org.springframework.web.bind.annotation.PathVariable; 
@@ -32,15 +33,15 @@ import org.springframework.web.bind.annotation.GetMapping;
   return cartRepository.findAll(); }
   
   
-  @GetMapping("/allcart/{_id}") 
+  @GetMapping("/allcart/{cartId}") 
   public Cart getByCartId( @PathVariable int cartId) {
   
   return cartRepository.findByCartId(cartId); }
   
   
-  @PutMapping("/update/{_id}") 
-  public Cart updateCart(@RequestBody Cart cart, @PathVariable String _id) {
- cart.set_id(_id);
+  @PutMapping("/updatecart/{cartId}") 
+  public Cart updateCart(@RequestBody Cart cart, @PathVariable int cartId) {
+ cart.setCartId(cartId);
   cartRepository.save(cart); return cart; }
   
   @PostMapping("/addCart") 
@@ -48,13 +49,13 @@ import org.springframework.web.bind.annotation.GetMapping;
   cartRepository.save(cart);
   return "A new Cart is added"; }
   
-/*
- * @DeleteMapping("/deletecart/{_id}") public String deleteById(@PathVariable
- * String _id) {
- * 
- * cartRepository.deleteById(_id); return "Product Deleted with a Product Id " +
- * _id; }
- */
+
+  @DeleteMapping("/deletecart/{_id}") 
+  public String deleteCartById(@PathVariable String _id) {
+  
+  cartRepository.deleteById(_id); return "Product Deleted with a Product Id " +
+  _id; }
+ 
   
   
   
