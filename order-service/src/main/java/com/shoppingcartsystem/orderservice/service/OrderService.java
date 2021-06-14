@@ -3,6 +3,7 @@ package com.shoppingcartsystem.orderservice.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.shoppingcartsystem.orderservice.model.Cart;
 import com.shoppingcartsystem.orderservice.model.Order;
 
 
@@ -14,10 +15,19 @@ public interface OrderService {
 	
 	Order updateOrder(Order order);
 	
-	//Order deleteOrderById(String _id);
-	
-	List<Order> getOrderByCustomerId(int customerId);
 
-	Optional<Order> getByOrderId(int orderId);
+	Optional<Order> getByOrderId(String orderId);
+	
+	
+	Object placeOrder(Cart cart);
+	
+	void deleteOrder(String orderId);
+	
+	List<Order> getOrderByCustomerId(Integer customerId);
+
+	//String changeStatus(String orderId);
+
+	
+
 
 }

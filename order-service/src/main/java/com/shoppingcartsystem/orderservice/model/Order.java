@@ -1,53 +1,53 @@
 package com.shoppingcartsystem.orderservice.model;
 
+import java.math.BigDecimal;
+
+
 //import java.time.LocalDate;
 
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+//import java.time.LocalDate;
+
 @Document(collection="orders")
 public class Order {
 	
 	@Id
-	private String _id;
-	
-	private int orderId;
+	private String orderId;
 	private String orderDate;
-	private int customerId;
-	private Double amountPaid;
-	private String modeOfPayment;
+	private Integer customerId;
+	private String paymentMode;
+	private BigDecimal amountPaid;
 	private String orderStatus;
 	private int quantity;
-
-	public Order() {}
-
-	public Order(String _id, int orderId, String orderDate, int customerId, Double amountPaid, String modeOfPayment,
-			String orderStatus, int quantity) {
+	private Address address;
+	private Product product;
+	
+	public Order() {
 		super();
-		this._id = _id;
+	}
+
+	public Order(String orderId, String orderDate, Integer customerId, String paymentMode, BigDecimal amountPaid,
+			String orderStatus, int quantity, Address address, Product product) {
+		super();
 		this.orderId = orderId;
 		this.orderDate = orderDate;
 		this.customerId = customerId;
+		this.paymentMode = paymentMode;
 		this.amountPaid = amountPaid;
-		this.modeOfPayment = modeOfPayment;
 		this.orderStatus = orderStatus;
 		this.quantity = quantity;
+		this.address = address;
+		this.product = product;
 	}
 
-	public String get_id() {
-		return _id;
-	}
-
-	public void set_id(String _id) {
-		this._id = _id;
-	}
-
-	public int getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(int orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 
@@ -59,28 +59,28 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public int getCustomerId() {
+	public Integer getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
 
-	public Double getAmountPaid() {
+	public String getPaymentMode() {
+		return paymentMode;
+	}
+
+	public void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
+	}
+
+	public BigDecimal getAmountPaid() {
 		return amountPaid;
 	}
 
-	public void setAmountPaid(Double amountPaid) {
+	public void setAmountPaid(BigDecimal amountPaid) {
 		this.amountPaid = amountPaid;
-	}
-
-	public String getModeOfPayment() {
-		return modeOfPayment;
-	}
-
-	public void setModeOfPayment(String modeOfPayment) {
-		this.modeOfPayment = modeOfPayment;
 	}
 
 	public String getOrderStatus() {
@@ -98,6 +98,30 @@ public class Order {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", orderDate=" + orderDate + ", customerId=" + customerId
+				+ ", paymentMode=" + paymentMode + ", amountPaid=" + amountPaid + ", orderStatus=" + orderStatus
+				+ ", quantity=" + quantity + ", address=" + address + ", product=" + product + "]";
+	}
 }
+	
+	
+	

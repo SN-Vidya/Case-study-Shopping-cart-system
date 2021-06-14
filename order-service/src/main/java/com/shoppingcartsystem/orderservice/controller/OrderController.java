@@ -33,7 +33,7 @@ public class OrderController{
 	}
 	@GetMapping("/orders/{orderId}")
 	@ResponseStatus(HttpStatus.FOUND)
-	public Optional<Order> getByOrderId( @PathVariable int orderId) {
+	public Optional<Order> getByOrderId( @PathVariable String orderId) {
 		
 		return orderRepository.findByOrderId(orderId);
 	}
@@ -41,15 +41,15 @@ public class OrderController{
 	
 	  @GetMapping("/customerorder/{customerId}")
 	  @ResponseStatus(HttpStatus.FOUND) 
-	  public List<Order> getOrderByCustomerId(int customerId) {
+	  public List<Order> getOrderByCustomerId(Integer customerId) {
 	  
 	  return orderRepository.findOrderByCustomerId(customerId); }
 	 
-	@PutMapping("/update/{_id}")
+	@PutMapping("/update/{orderId}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public Order updateOrder(@RequestBody Order order, @PathVariable String _id) {
+	public Order updateOrder(@RequestBody Order order, @PathVariable String orderId) {
 		
-		order.set_id(_id);
+		order.setOrderId(orderId);
 		orderRepository.save(order);
 		return order;
 	}
@@ -60,12 +60,21 @@ public class OrderController{
 		return "A new Customer is added";
 	}
 	
-	@DeleteMapping("/delete/{_id}")
-	public String deleteById(@PathVariable String  _id) {
+	@DeleteMapping("/delete/{orderId}")
+	public String deleteById(@PathVariable String orderId) {
 		
-		orderRepository.deleteById(_id);
-		return "Order Deleted with an Id: " + _id;
+		orderRepository.deleteById(orderId);
+		return "Order Deleted with an Id: " + orderId;
 	}
+	
+	
+//	@PutMapping("/changeStatus/{orderId} ")
+//	public String changeStatus(@PathVariable String orderId) {
+//		
+//		  orderRepository.changeStatus(orderId);
+//		return "Order Status is updated";
+//	}
+	
 
 }
 

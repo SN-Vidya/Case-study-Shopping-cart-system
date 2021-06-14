@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
+
+import com.shoppingcartsystem.orderservice.model.Cart;
 import com.shoppingcartsystem.orderservice.model.Order;
 
 @Repository
@@ -12,10 +14,21 @@ public interface OrderRepository extends MongoRepository<Order,String> {
 
 	 //Order deleteBy(String _id);
 
-	List<Order> findOrderByCustomerId(int customerId);
+	List<Order> findOrderByCustomerId(Integer customerId);
 
-	Optional<Order> findByOrderId(int orderId);
+	Optional<Order> findByOrderId(String orderId);
 
 	//Order deleteOrderById(String _id);
+	
+	//List<Order> findByCustomerId(Integer customerId);
+
+	//String changeStatusTo(String orderStatus, String orderId);
+
+	Object save(Cart cart);
+
+	//void changeStatus(String orderId);
+
+	
+	
 	
 }
