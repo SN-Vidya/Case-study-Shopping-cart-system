@@ -21,4 +21,6 @@ public interface ProductService {
 	Product updateProduct(Product product);
 
 	Product deleteByProductName(String productName);
+	
+	//void deleteProduct(String _id);
 }

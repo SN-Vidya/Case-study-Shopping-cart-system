@@ -2,9 +2,7 @@ package com.shoppingcartsystem.productservice.service;
 
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.factory.annotation.Autowired; 
 import com.shoppingcartsystem.productservice.model.Product;
 import com.shoppingcartsystem.productservice.repository.ProductRepository;
 
@@ -48,8 +46,11 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productRepository.deleteByProductName(productName);
 	}
-
+	
+	
+	
 }
+
 	
 	
 

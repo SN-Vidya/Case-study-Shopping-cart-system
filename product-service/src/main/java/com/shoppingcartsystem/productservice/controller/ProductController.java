@@ -3,6 +3,7 @@ package com.shoppingcartsystem.productservice.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,19 +25,20 @@ public class ProductController{
 	@Autowired 
 	private ProductRepository productRepository;
 	
+	
 	@GetMapping("/allproducts")
 	public List<Product> getAllProducts(){
 		
 		return productRepository.findAll();
 	}
-	@GetMapping("ProductName/{productName}")
+	@GetMapping("/findAllProducts/{productName}")
 	public List<Product> getProductByName(@PathVariable String productName) {
 		
 		return productRepository.findByProductName(productName);
 	}
 
 	
-	  @GetMapping("Category/{category}") public List<Product>
+	  @GetMapping("/Category/{category}") public List<Product>
 	  getProductByCategory(@PathVariable String category){
 	  
 	  return productRepository.findByCategory(category); }
@@ -59,7 +61,7 @@ public class ProductController{
 		return "A existing product is updated";
 	}
 	@PutMapping("/update/{_id}")
-	public Product updateProduct(@RequestBody Product product, @PathVariable String _id) {
+	public Product updateProduct(@RequestBody Product product, @PathVariable String  _id) {
 		
 		product.set_id(_id);
 		productRepository.save(product);
@@ -71,7 +73,6 @@ public class ProductController{
 		productRepository.deleteById(_id);
 		return "Product Deleted with a Product Id " + _id;
 	}
-	
 
 }
 
