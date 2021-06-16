@@ -26,6 +26,8 @@ public interface OrderRepository extends MongoRepository<Order,String> {
 
 	Object save(Cart cart);
 
+	//void deleteOrderById(String orderId);
+
 	//void changeStatus(String orderId);
 
 	

@@ -60,8 +60,8 @@ public class OrderController{
 		return "A new Customer is added";
 	}
 	
-	@DeleteMapping("/delete/{orderId}")
-	public String deleteById(@PathVariable String orderId) {
+	@DeleteMapping("/deleteorder/{orderId}")
+	public String deleteOrderById(@PathVariable String orderId) {
 		
 		orderRepository.deleteById(orderId);
 		return "Order Deleted with an Id: " + orderId;
