@@ -50,8 +50,8 @@ public class UserServiceImpl implements UserService{
 	public User deleteByFullName(String fullName) {
 		return userRepository.deleteByFullName(fullName);
 	}
-	
-	
-	
+
+
+
 
 }

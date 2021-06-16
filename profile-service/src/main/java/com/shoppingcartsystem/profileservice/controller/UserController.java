@@ -4,8 +4,11 @@ import java.util.List;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,25 +21,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shoppingcartsystem.profileservice.headergenerator.HeaderGenerator;
 import com.shoppingcartsystem.profileservice.model.User;
 import com.shoppingcartsystem.profileservice.repository.UserRepository;
+import com.shoppingcartsystem.profileservice.service.UserService;
 
 
 
 @RestController
-@RequestMapping("/profile-service")
+@RequestMapping("/profile")
 public class UserController {
 	
 	
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+    private UserService userService;
+    
+	@Autowired
+    private HeaderGenerator headerGenerator;
+    
+	
 	@GetMapping("/allusers")
-	@ResponseStatus(HttpStatus.OK)
-	public List<User> getAllUser() {
-		
-		return userRepository.findAll();
+	public ResponseEntity<List<User>> getAllUsers(){
+        List<User> users =  userService.getAllUser();
+        if(!users.isEmpty()) {
+        	return new ResponseEntity<List<User>>(
+        		users,
+        		headerGenerator.getHeadersForSuccessGetMethod(),
+        		HttpStatus.OK);
+        }
+        return new ResponseEntity<List<User>>(
+        		headerGenerator.getHeadersForError(),
+        		HttpStatus.NOT_FOUND);
 	}
+	
 	@GetMapping("/users/{_id}")
 	@ResponseStatus(HttpStatus.FOUND)
 	public Optional<User> getById( @PathVariable String _id) {
@@ -61,6 +81,7 @@ public class UserController {
 		return user;
 	}
 	@PostMapping("/customerRegistration")
+
 	public String addNewCustomerProfile(@RequestBody User user) {
 		
 		userRepository.save(user);
