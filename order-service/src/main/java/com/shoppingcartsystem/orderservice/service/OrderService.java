@@ -25,8 +25,6 @@ public interface OrderService {
 	
 	List<Order> getOrderByCustomerId(Integer customerId);
 
-	//String changeStatus(String orderId);
-
 	
 
 
