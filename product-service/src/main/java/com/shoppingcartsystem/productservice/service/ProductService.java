@@ -8,6 +8,7 @@ import com.shoppingcartsystem.productservice.model.Product;
 
 public interface ProductService {
 	
+	//Admin and User
 	List<Product> getAllProducts();
 
 	List<Product> getProductByName(String productName);
@@ -16,11 +17,12 @@ public interface ProductService {
 
 	List<Product> getProductByType(String productType);
 
+	//Admincontroller
 	Product addProduct(Product product);
 
 	Product updateProduct(Product product);
 
 	Product deleteByProductName(String productName);
 	
-	//void deleteProduct(String _id);
+	
 }
