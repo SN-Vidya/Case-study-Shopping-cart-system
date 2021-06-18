@@ -13,6 +13,7 @@ import com.shoppingcartsystem.profileservice.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService{
 	
+
 	@Autowired
 	private UserRepository userRepository;
 	@Override
@@ -21,9 +22,7 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findAll();
 	}
 	
-
-	
-	  @Override
+	@Override
 	 public Optional<User> getById(String _id) {
 	  
 	  return userRepository.findById(_id); }
@@ -39,17 +38,16 @@ public class UserServiceImpl implements UserService{
 		return userRepository.save(user);
 	}
 	@Override
-	public User addNewCustomerProfile(User user) {
+	public User addNewUser(User user) {
 		return userRepository.save(user);
 	}
-	@Override
-	public User addAdminProfile(User user) {
-		return userRepository.save(user);
-	}
+	
 	@Override
 	public User deleteByFullName(String fullName) {
 		return userRepository.deleteByFullName(fullName);
 	}
+
+
 
 
 

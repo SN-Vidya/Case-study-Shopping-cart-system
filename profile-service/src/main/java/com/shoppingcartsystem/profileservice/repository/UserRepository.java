@@ -10,15 +10,15 @@ import com.shoppingcartsystem.profileservice.model.User;
 @Repository
 public interface UserRepository extends MongoRepository<User,String> {
 
-	//User findByMobile_no(Double mobile_no);
+	
 
-	User findByFullName(String fullName);
+	
 
 	User deleteByFullName(String fullName);
 
-	//void get(String anyString);
+	User findByFullName(String fullName);
 
-	//User getOne(String _id);
+	
 	
 	
 }

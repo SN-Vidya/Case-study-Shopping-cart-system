@@ -2,9 +2,11 @@ package com.shoppingcartsystem.profileservice.controller;
 import java.util.List;
 
 
+
+
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +31,7 @@ import com.shoppingcartsystem.profileservice.service.UserService;
 
 
 @RestController
-@RequestMapping("/profile")
+@RequestMapping("/user")
 public class UserController {
 	
 	
@@ -42,7 +44,6 @@ public class UserController {
 	@Autowired
     private HeaderGenerator headerGenerator;
     
-	
 	@GetMapping("/allusers")
 	public ResponseEntity<List<User>> getAllUsers(){
         List<User> users =  userService.getAllUser();
@@ -57,7 +58,7 @@ public class UserController {
         		HttpStatus.NOT_FOUND);
 	}
 	
-	@GetMapping("/users/{_id}")
+	@GetMapping("/user/{_id}")
 	@ResponseStatus(HttpStatus.FOUND)
 	public Optional<User> getById( @PathVariable String _id) {
 		
@@ -80,19 +81,14 @@ public class UserController {
 		userRepository.save(user);
 		return user;
 	}
-	@PostMapping("/customerRegistration")
+	@PostMapping("/Register")
 
 	public String addNewCustomerProfile(@RequestBody User user) {
 		
 		userRepository.save(user);
-		return "A new Customer is added";
+		return "A new User is added";
 	}
-	@PostMapping("/addAdmin")
-	public String addAdminProfile(@RequestBody User user) {
-		
-		userRepository.save(user);
-		return "Admin Profile is added";
-	}
+	
 	@DeleteMapping("/delete/{_id}")
 	public String deleteById(@PathVariable String  _id) {
 		
