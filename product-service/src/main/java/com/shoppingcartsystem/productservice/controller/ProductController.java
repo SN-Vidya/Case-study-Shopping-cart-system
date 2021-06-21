@@ -2,9 +2,8 @@ package com.shoppingcartsystem.productservice.controller;
 //import java.util.Optional;
 
 import java.util.List;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shoppingcartsystem.productservice.model.Product;
 import com.shoppingcartsystem.productservice.repository.ProductRepository;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/product")
 public class ProductController{
