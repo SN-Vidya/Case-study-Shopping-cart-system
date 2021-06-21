@@ -1,58 +1,47 @@
 package com.shoppingcartsystem.cartservice.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="cart")
+@Document(value="Cart")
 public class Cart {
+	
 	@Id
-	private String _id;
+	private String cartId;
+	private double cartTotal;
+	private List<Items> items= new ArrayList<>();;
 	
-	private int cartId;
-	private double totalPrice;
-	private Items items;
-	
-	public Cart() {}
-
-	public Cart(String _id, int cartId, double totalPrice, Items items) {
+	public Cart() {
 		super();
-		this._id = _id;
+	}
+	public Cart(String cartId, List<Items> items) {
+		super();
 		this.cartId = cartId;
-		this.totalPrice = totalPrice;
 		this.items = items;
 	}
-
-	public String get_id() {
-		return _id;
-	}
-
-	public void set_id(String _id) {
-		this._id = _id;
-	}
-
-	public int getCartId() {
+	public String getCartId() {
 		return cartId;
 	}
-
-	public void setCartId(int cartId) {
+	public void setCartId(String cartId) {
 		this.cartId = cartId;
 	}
-
-	public double getTotalPrice() {
-		return totalPrice;
+	public double getCartTotal() {
+		return cartTotal;
 	}
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setCartTotal(double cartTotal) {
+		this.cartTotal = cartTotal;
 	}
-
-	public Items getItems() {
+	public List<Items> getItems() {
 		return items;
 	}
-
-	public void setItems(Items items) {
+	public void setItems(List<Items> items) {
 		this.items = items;
 	}
+	public static double getSubTotalForItem(Product product, int quantity){
+	       return (product.getPrice()*quantity);
+	    }
 
-	
 }

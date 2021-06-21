@@ -1,54 +1,41 @@
 package com.shoppingcartsystem.cartservice.model;
 
 public class Items {
-	
-	private String productName;
+
+	private Product product;
+	private double subTotal;
 	private int quantity;
-	private double price;
-	//private Product product;
 	
-	public Items() {}
-
-	public Items(String productName, int quantity, double price ) {
+	
+	public Items(Product product, double subTotal, int quantity) {
 		super();
-		this.productName = productName;
+		this.product = product;
+		this.subTotal = subTotal;
 		this.quantity = quantity;
-		this.price = price;
-		//this.product = product;
 	}
-
-	public String getProductName() {
-		return productName;
+	public Items() {
+		
 	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public Product getProduct() {
+		return product;
 	}
-
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	public double getSubTotal() {
+		return subTotal;
+	}
+	public void setSubTotal(double subTotal) {
+		this.subTotal = subTotal;
+	}
 	public int getQuantity() {
 		return quantity;
 	}
-
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-//	public Product getProduct() {
-//		return product;
-//	}
-//
-//	public void setProduct(Product product) {
-//		this.product = product;
-//	}
-	
 		
-	}
 	
+	
+	
+}

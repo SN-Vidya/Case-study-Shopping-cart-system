@@ -10,10 +10,7 @@ public interface CartRepository extends MongoRepository<Cart,String> {
 
 	
 
-	Cart findByCartId(int cartId);
-
-	//Cart deleteCartById(String _id);
-
+	Cart findByCartId(String cartId);
 	
 
 }
