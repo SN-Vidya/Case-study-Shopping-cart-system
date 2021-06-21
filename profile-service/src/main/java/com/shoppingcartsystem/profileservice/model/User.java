@@ -11,7 +11,7 @@ public class User  {
 	private String _id;
 	
 	private String fullName;
-	private String email_id;
+	private String email;
 	private String gender;
 	private String dob;
 	private String role;
@@ -21,12 +21,12 @@ public class User  {
 
 	public User() {}
 
-	public User(String _id, String fullName, String email_id, String gender, String dob, String role, Double mobile_no,
+	public User(String _id, String fullName, String email, String gender, String dob, String role, Double mobile_no,
 			String password, Address address) {
 		super();
 		this._id = _id;
 		this.fullName = fullName;
-		this.email_id = email_id;
+		this.email = email;
 		this.gender = gender;
 		this.dob = dob;
 		this.role = role;
@@ -51,12 +51,12 @@ public class User  {
 		this.fullName = fullName;
 	}
 
-	public String getEmail_id() {
-		return email_id;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getGender() {
