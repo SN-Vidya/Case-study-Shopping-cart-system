@@ -24,24 +24,23 @@ public class CartServiceApplication {
 		SpringApplication.run(CartServiceApplication.class, args);
 	}
 	@Bean
-	public  Docket swaggerConfiguration()  {
-            return new Docket(DocumentationType.SWAGGER_2)  
-                .select() 
-                .apis(RequestHandlerSelectors.basePackage("com.shoppingcartsystem.cartservice.controller"))
-                .paths(PathSelectors.any())                          
+    public Docket swaggerApiDocket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.shoppingcartsystem.cartservice"))
                 .build()
                 .apiInfo(apiDetails());
-	}
-    private ApiInfo apiDetails() {
-	        return  new ApiInfo("CartController Api",
-			"Api Collections",
-			null,
-			null,
-			new springfox.documentation.service.Contact(null, null, null),
-			null,null,Collections.emptyList());
     }
-			
-
+	private ApiInfo apiDetails() {
+        return new ApiInfo("Cart Service API",
+                "Cart details of users",
+                "1.0",
+                "",
+                new springfox.documentation.service.Contact("Vidya","www.cart.com",""),
+                "API License","",
+                Collections.emptyList());
+    }
 
 
 }

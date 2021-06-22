@@ -14,9 +14,6 @@ package com.shoppingcartsystem.cartservice.service;
 	  	@Autowired
 	  	 CartRepository cartRepository;
 
-	  	   
-
-	  	
 	  	@Override
 	  	public Cart findByCartId(String cartId) {
 	  		
