@@ -30,22 +30,24 @@ public class ProfileServiceApplication {
 		SpringApplication.run(ProfileServiceApplication.class, args);
 	}
     
+	
 	@Bean
-	public  Docket swaggerConfiguration()  {
-            return new Docket(DocumentationType.SWAGGER_2)  
-                .select() 
-                .apis(RequestHandlerSelectors.basePackage("com.shoppingcartsystem.profileservice.controller"))
-                .paths(PathSelectors.any())                          
+    public Docket swaggerApiDocket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.shoppingcartsystem.profileservice"))
                 .build()
                 .apiInfo(apiDetails());
-	}
-    private ApiInfo apiDetails() {
-	        return  new ApiInfo("UserController Api",
-			"Api Collections",
-			null,
-			null,
-			new springfox.documentation.service.Contact(null, null, null),
-			null,null,Collections.emptyList());
+    }
+	private ApiInfo apiDetails() {
+        return new ApiInfo("Profile Service API",
+                "Profile details of users",
+                "1.0",
+                "",
+                new springfox.documentation.service.Contact("Vidya","www.cart.com",""),
+                "API License","",
+                Collections.emptyList());
     }
 			
 	
