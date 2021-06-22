@@ -3,6 +3,7 @@ package com.shoppingcartsystem.productservice.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.ResponseStatus;
 //import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+//import com.shoppingcartsystem.productservice.exception.ResourceNotFoundException;
 import com.shoppingcartsystem.productservice.model.Product;
 import com.shoppingcartsystem.productservice.repository.ProductRepository;
 
@@ -60,7 +61,7 @@ public class ProductController{
 		productRepository.save(product);
 		return "A existing product is updated";
 	}
-	@PutMapping("/update/{_id}")
+	@PutMapping("/product/{_id}")
 	public Product updateProduct(@RequestBody Product product, @PathVariable String  _id) {
 		
 		product.set_id(_id);
@@ -73,6 +74,19 @@ public class ProductController{
 		productRepository.deleteById(_id);
 		return "Product Deleted with a Product Id " + _id;
 	}
+	
+//	@PutMapping("/product/{id}")
+//	public ResponseEntity<Product> updateProduct(@PathVariable String _id, @RequestBody Product productDetails){
+//		Product product = productRepository.findProductById(_id)
+//				.orElseThrow(() -> new ResourceNotFoundException("Product not exist with id :" + _id));
+//		
+//		product.setProductId(productDetails.getProductId());
+//		product.setProductName(productDetails.getProductName());
+//		product.setCategory(productDetails.getCategory());
+//		
+//		Product updatedProduct = productRepository.save(product);
+//		return ResponseEntity.ok(updatedProduct);
+//	}
 
 }
 
