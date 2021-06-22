@@ -25,22 +25,21 @@ public class OrderServiceApplication {
 	}
 	
 	@Bean
-	public  Docket swaggerConfiguration()  {
-            return new Docket(DocumentationType.SWAGGER_2)  
-                .select() 
-                .apis(RequestHandlerSelectors.basePackage("com.shoppingcartsystem.orderservice.controller"))
-                .paths(PathSelectors.any())                          
+    public Docket swaggerApiDocket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.shoppingcartsystem.orderservice"))
                 .build()
                 .apiInfo(apiDetails());
-	}
-    private ApiInfo apiDetails() {
-	        return  new ApiInfo("OrderController Api",
-			"Api Collections",
-			null,
-			null,
-			new springfox.documentation.service.Contact(null, null, null),
-			null,null,Collections.emptyList());
     }
-			
-
+	private ApiInfo apiDetails() {
+        return new ApiInfo("Order Service API",
+                "Order details of users",
+                "1.0",
+                "",
+                new springfox.documentation.service.Contact("Vidya","www.order.com",""),
+                "API License","",
+                Collections.emptyList());
+    }
 }
