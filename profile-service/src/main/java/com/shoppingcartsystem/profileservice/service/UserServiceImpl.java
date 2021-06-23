@@ -50,13 +50,7 @@ public class UserServiceImpl implements UserService{
 		return userRepository.save(user);
 	}
 	
-	@Override
-	public User deleteByFullName(String fullName) {
-		return userRepository.deleteByFullName(fullName);
-	}
-
-
-
+	
 
 
 

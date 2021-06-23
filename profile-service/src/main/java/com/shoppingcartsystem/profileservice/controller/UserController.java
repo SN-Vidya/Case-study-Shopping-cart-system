@@ -1,8 +1,10 @@
 package com.shoppingcartsystem.profileservice.controller;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,55 +31,74 @@ public class UserController {
 	
 	
 	@GetMapping("/allusers")
-	public List<User> getAllUsers(){
-		
-		return userRepository.findAll();
+	public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String fullName) {
+	  try {
+	    List<User> users = new ArrayList<User>();
+
+	    if (fullName == null)
+	      userRepository.findAll().forEach(users::add);
+	    else
+	      userRepository.findByFullNameContaining(fullName).forEach(users::add);
+
+	    if (users.isEmpty()) {
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    }
+
+	    return new ResponseEntity<>(users, HttpStatus.OK);
+	  } catch (Exception e) {
+	    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	  }
 	}
-	
+
 	@GetMapping("/user/{_id}")
-	@ResponseStatus(HttpStatus.FOUND)
-	public Optional<User> getById( @PathVariable String _id) {
-		
-		return userRepository.findById(_id);
+	public ResponseEntity<User> getUserById(@PathVariable("_id") String _id) {
+	  Optional<User> userData = userRepository.findById(_id);
+
+	  if (userData.isPresent()) {
+	    return new ResponseEntity<>(userData.get(), HttpStatus.OK);
+	  } else {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }
+	}
+	
+	 
+	
+	@PutMapping("/update/{_id}")
+	public ResponseEntity<User> updateUser(@PathVariable("_id") String _id, @RequestBody User user) {
+	  Optional<User> userData = userRepository.findById(_id);
+
+	  if (userData.isPresent()) {
+	    User _user = userData.get();
+	    _user.setFullName(user.getFullName());
+	    _user.setEmail(user.getEmail());
+	    _user.setGender(user.getGender());
+	    return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
+	  } else {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }
 	}
 
 	
-	  @GetMapping("userName/{fullName}")
-	  
-	  @ResponseStatus(HttpStatus.FOUND) public User
-	  getByFullName(@RequestParam(value="fullName", required = false) String fullName) {
-	  
-	  return userRepository.findByFullName(fullName); }
-	  
- @GetMapping("profile/{email}")
-	  
-	  @ResponseStatus(HttpStatus.FOUND) public User
-	  getByEmail(@RequestParam(value="email", required = false) String email) {
-	  
-	  return userRepository.findByEmail(email); }
-	 
-	 
-	@PutMapping("/update/{email}")
-	@ResponseStatus(HttpStatus.ACCEPTED)
-	public User updateProfile(@RequestBody User user, @PathVariable String email) {
-		
-		user.setEmail(email);
-		userRepository.save(user);
-		return user;
-	}
-	@PostMapping("/Register")
-
-	public String addNewCustomerProfile(@RequestBody User user) {
-		
-		userRepository.save(user);
-		return "A new User is added";
+	@PostMapping("/register")
+	public ResponseEntity<User> createUser(@RequestBody User user) {
+	  try {
+	    User _user = userRepository.save(new User(user.get_id(), user.getFullName(), user.getEmail(),user.getGender(), user.getDob(), user.getRole(), user.getMobile_no(), user.getPassword(), user.getAddress()));
+	    return new ResponseEntity<>(_user, HttpStatus.CREATED);
+	  } catch (Exception e) {
+	    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	  }
 	}
 	
+
 	@DeleteMapping("/delete/{_id}")
-	public String deleteById(@PathVariable String  _id) {
-		
-		userRepository.deleteById(_id);
-		return "User Deleted with an Id: " + _id;
+	public ResponseEntity<HttpStatus> deleteUser(@PathVariable("_id") String _id) {
+	  try {
+	    userRepository.deleteById(_id);
+	    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	  } catch (Exception e) {
+	    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	  }
 	}
+
 
 }

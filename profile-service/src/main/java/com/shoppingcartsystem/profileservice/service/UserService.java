@@ -21,7 +21,7 @@ public interface UserService {
 
 	User updateProfile(User user);
 
-	User deleteByFullName(String fullName);
+	
 	Optional<User> getById(String _id);
 
 
